@@ -7,6 +7,8 @@
 
 > Launcher for Internet Explorer.
 
+This is a fork of the [launcher for Internet Explorer](https://github.com/karma-runner/karma-ie-launcher).
+
 ## Installation
 
 The easiest way is to keep `karma-ie-launcher` as a devDependency, by running
