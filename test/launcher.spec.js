@@ -69,16 +69,16 @@ describe('launcher', function () {
       }
     })
 
-    it('should include 3 arguments (2 from the Edge command and 1 for the url)', function (done) {
+    it('should include 2 arguments (1 for start and 1 for the Edge URI)', function (done) {
       var options
       options = getOptions('url', module)
-      expect(options).to.have.length(3)
+      expect(options).to.have.length(2)
       done()
     })
 
-    it('should return url as the last flag', function (done) {
+    it('should return the Edge URI as the last flag', function (done) {
       var options = getOptions('url', module)
-      expect(options[options.length - 1]).to.equal('url')
+      expect(options[options.length - 1]).to.equal('microsoft-edge:url')
       done()
     })
   })

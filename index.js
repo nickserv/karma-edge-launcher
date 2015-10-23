@@ -6,6 +6,7 @@
 
 var urlparse = require('url').parse
 var urlformat = require('url').format
+var util = require('util')
 
 // Constants
 // ---------
@@ -13,7 +14,7 @@ var urlformat = require('url').format
 var EDGE_COMMAND = [
   'powershell',
   'start',
-  'shell:AppsFolder\\Microsoft.Windows.Spartan_cw5n1h2txyewy!Microsoft.Spartan.Spartan'
+  'microsoft-edge:%s'
 ]
 
 var TIMEOUT = 1000
@@ -29,7 +30,10 @@ function EdgeBrowser (baseBrowserDecorator) {
     delete urlObj.search
     url = urlformat(urlObj)
 
-    return EDGE_COMMAND.splice(1).concat(url)
+    // inject the given URL into the last option
+    var options = EDGE_COMMAND.splice(1)
+    options[options.length - 1] = util.format(options[options.length - 1], url)
+    return options
   }
 
   var baseOnProcessExit = this._onProcessExit
