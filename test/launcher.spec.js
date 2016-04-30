@@ -11,16 +11,6 @@ describe('launcher', function () {
     module = {
       baseBrowserDecorator: ['value', function () {}],
       emitter: ['value', new EventEmitter()],
-      logger: [
-        'value', {
-          create: function () {
-            return {
-              error: function () {},
-              debug: function () {}
-            }
-          }
-        }
-      ],
       args: ['value', []]
     }
   })
@@ -134,41 +124,6 @@ describe('launcher', function () {
 
     it('should return undefined when not found', function (done) {
       expect(win32Location()).to.equal(void 0)
-      done()
-    })
-  })
-
-  describe('_onProcessExit', function () {
-    var childProcessCmd, onProcessExit
-
-    beforeEach(function () {
-      onProcessExit = function () {
-        var childProcessMock
-        childProcessMock = {
-          exec: function (cmd, cb) {
-            childProcessCmd = cmd
-            cb()
-          }
-        }
-
-        EdgeLauncher = mocks.loadFile(path.join(__dirname, '/../index'), {
-          child_process: childProcessMock
-        }).module.exports
-        injector = new di.Injector([module, EdgeLauncher])
-        launcher = injector.get('launcher:Edge')
-        launcher._process = {
-          pid: 10
-        }
-        launcher._onProcessExit(1, 2)
-      }
-    })
-
-    it('should call wmic with process ID', function (done) {
-      onProcessExit()
-      expect(childProcessCmd).to.equal(
-        'wmic.exe Path win32_Process where ' +
-        '"Name=\'iexplore.exe\' and CommandLine Like \'%SCODEF:10%\'" call Terminate'
-      )
       done()
     })
   })
