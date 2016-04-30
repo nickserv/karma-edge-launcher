@@ -1,4 +1,4 @@
-// Karme IE Launcher
+// Karme Edge Launcher
 // =================
 
 // Dependencies
@@ -16,8 +16,8 @@ var _ = require('lodash')
 
 var PROCESS_NAME = 'iexplore.exe'
 
-// Find the ie executable
-function getInternetExplorerExe () {
+// Find the Edge executable
+function getEdgeExe () {
   var suffix = path.join('Internet Explorer', PROCESS_NAME)
   var locations = _.map(_.compact([
     process.env['PROGRAMW6432'],
@@ -33,7 +33,7 @@ function getInternetExplorerExe () {
 }
 
 // Constructor
-function IEBrowser (baseBrowserDecorator, logger, args) {
+function EdgeBrowser (baseBrowserDecorator, logger, args) {
   baseBrowserDecorator(this)
 
   var log = logger.create('launcher')
@@ -87,22 +87,22 @@ function IEBrowser (baseBrowserDecorator, logger, args) {
   }
 
   // this is to expose the function for unit testing
-  this._getInternetExplorerExe = getInternetExplorerExe
+  this._getEdgeExe = getEdgeExe
 }
 
-IEBrowser.prototype = {
-  name: 'IE',
+EdgeBrowser.prototype = {
+  name: 'Edge',
   DEFAULT_CMD: {
-    win32: getInternetExplorerExe()
+    win32: getEdgeExe()
   },
-  ENV_CMD: 'IE_BIN'
+  ENV_CMD: 'EDGE_BIN'
 }
 
-IEBrowser.$inject = ['baseBrowserDecorator', 'logger', 'args']
+EdgeBrowser.$inject = ['baseBrowserDecorator', 'logger', 'args']
 
 // Publish di module
 // -----------------
 
 module.exports = {
-  'launcher:IE': ['type', IEBrowser]
+  'launcher:Edge': ['type', EdgeBrowser]
 }

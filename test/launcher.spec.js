@@ -3,11 +3,11 @@ var di = require('di')
 var mocks = require('mocks')
 
 describe('launcher', function () {
-  var EventEmitter, IELauncher, injector, launcher, module
+  var EventEmitter, EdgeLauncher, injector, launcher, module
 
   beforeEach(function () {
     EventEmitter = require('../node_modules/karma/lib/events').EventEmitter
-    IELauncher = mocks.loadFile(path.join(__dirname, '/../index')).module.exports
+    EdgeLauncher = mocks.loadFile(path.join(__dirname, '/../index')).module.exports
     module = {
       baseBrowserDecorator: ['value', function () {}],
       emitter: ['value', new EventEmitter()],
@@ -31,25 +31,25 @@ describe('launcher', function () {
   })
 
   describe('exports', function () {
-    it('should export launcher:IE', function (done) {
-      expect(IELauncher['launcher:IE']).to.defined
+    it('should export launcher:Edge', function (done) {
+      expect(EdgeLauncher['launcher:Edge']).to.defined
       done()
     })
   })
 
   describe('initialization', function () {
     beforeEach(function () {
-      injector = new di.Injector([module, IELauncher])
-      launcher = injector.get('launcher:IE')
+      injector = new di.Injector([module, EdgeLauncher])
+      launcher = injector.get('launcher:Edge')
     })
 
     it('should initialize name', function (done) {
-      expect(launcher.name).to.equal('IE')
+      expect(launcher.name).to.equal('Edge')
       done()
     })
 
     it('should initialize ENV_CMD', function (done) {
-      expect(launcher.ENV_CMD).to.equal('IE_BIN')
+      expect(launcher.ENV_CMD).to.equal('EDGE_BIN')
       done()
     })
 
@@ -64,8 +64,8 @@ describe('launcher', function () {
 
     beforeEach(function () {
       getOptions = function (url, module) {
-        injector = new di.Injector([module, IELauncher])
-        launcher = injector.get('launcher:IE')
+        injector = new di.Injector([module, EdgeLauncher])
+        launcher = injector.get('launcher:Edge')
         return launcher._getOptions('url')
       }
     })
@@ -103,14 +103,14 @@ describe('launcher', function () {
         }
       })
 
-      IELauncher = mocks.loadFile(path.join(__dirname, '/../index'), {
+      EdgeLauncher = mocks.loadFile(path.join(__dirname, '/../index'), {
         fs: fsMock
       }).module.exports
 
       win32Location = function () {
-        injector = new di.Injector([module, IELauncher])
-        launcher = injector.get('launcher:IE')
-        return launcher._getInternetExplorerExe()
+        injector = new di.Injector([module, EdgeLauncher])
+        launcher = injector.get('launcher:Edge')
+        return launcher._getEdgeExe()
       }
     })
 
@@ -151,11 +151,11 @@ describe('launcher', function () {
           }
         }
 
-        IELauncher = mocks.loadFile(path.join(__dirname, '/../index'), {
+        EdgeLauncher = mocks.loadFile(path.join(__dirname, '/../index'), {
           child_process: childProcessMock
         }).module.exports
-        injector = new di.Injector([module, IELauncher])
-        launcher = injector.get('launcher:IE')
+        injector = new di.Injector([module, EdgeLauncher])
+        launcher = injector.get('launcher:Edge')
         launcher._process = {
           pid: 10
         }
