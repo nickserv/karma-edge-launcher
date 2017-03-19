@@ -13,13 +13,20 @@ function EdgeBrowser (baseBrowserDecorator, logger) {
   var log = logger.create('launcher')
 
   function killEdgeProcess (cb) {
-    exec('taskkill /t /f /im MicrosoftEdge.exe', function (err) {
+    var killCommand = 'taskkill /t /im MicrosoftEdge.exe'
+    exec(killCommand, function (err) {
       if (err) {
         log.error('Killing Edge process failed. ' + err)
       } else {
-        log.debug('Killed Edge process')
+        exec(killCommand, function (err) {
+          if (err) {
+            log.error('Killing Edge process failed. ' + err)
+          } else {
+            log.debug('Killed Edge process')
+          }
+          cb()
+        })
       }
-      cb()
     })
   }
 
