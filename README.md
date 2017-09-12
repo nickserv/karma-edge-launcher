@@ -1,4 +1,3 @@
-# karma-edge-launcher
 # Moved to [karma-runner/karma-edge-launcher](https://github.com/karma-runner/karma-edge-launcher).
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/nickmccurdy/karma-edge-launcher)
