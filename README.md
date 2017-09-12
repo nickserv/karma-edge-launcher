@@ -1,4 +1,5 @@
 # karma-edge-launcher
+# Moved to [karma-runner/karma-edge-launcher](https://github.com/karma-runner/karma-edge-launcher).
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/nickmccurdy/karma-edge-launcher)
  [![npm version](https://img.shields.io/npm/v/karma-edge-launcher.svg?style=flat-square)](https://www.npmjs.com/package/karma-edge-launcher) [![npm downloads](https://img.shields.io/npm/dm/karma-edge-launcher.svg?style=flat-square)](https://www.npmjs.com/package/karma-edge-launcher)
