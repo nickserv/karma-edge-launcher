@@ -116,7 +116,7 @@ describe('launcher', function () {
 
     it('should call taskkill', function (done) {
       onProcessExit()
-      expect(childProcessCmd).to.equal('taskkill /t /f /im MicrosoftEdge.exe')
+      expect(childProcessCmd).to.equal('taskkill /t /im MicrosoftEdge.exe')
       done()
     })
   })
